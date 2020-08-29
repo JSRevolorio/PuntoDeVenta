@@ -9,7 +9,7 @@ namespace SPV.util
     public class Respuesta
     {        
         public string Mensaje {get; set;}
-        public bool Estado {get; set;}
+        public bool Error {get; set;}
         public dynamic Resultado {get; set;}
     }
 }

@@ -28,7 +28,8 @@ namespace SPV.Controllers
             return View(clientes);
         }
 
-        public IActionResult FormCliente(int id)
+        [HttpGet]
+        public IActionResult GetCliente(int id)
         {
             var cliente = dbo.Cliente.Find(id);
             return PartialView("FormClienteModal", cliente);
@@ -48,20 +49,20 @@ namespace SPV.Controllers
                         dbo.Cliente.Add(cliente);
                         dbo.SaveChanges();
 
-                        respuesta.Estado = true;
+                        respuesta.Error = false;
                         respuesta.Mensaje = "Cliente Registrado con exito!";
                         respuesta.Resultado = "";
-                        return Ok(respuesta);
+                        return StatusCode(201,respuesta);
                     }
                     else
                     {
                         dbo.Cliente.Update(cliente);
                         dbo.SaveChanges();
                         
-                        respuesta.Estado = true;
+                        respuesta.Error = false;
                         respuesta.Mensaje = "Cliente Actulizado con exito!";
                         respuesta.Resultado = cliente.Id;
-                        return Ok(respuesta);
+                        return StatusCode(204,respuesta);
                     }
                 }
                 else
@@ -70,17 +71,17 @@ namespace SPV.Controllers
                                             .SelectMany(x => x.Errors)
                                             .Select(x => x.ErrorMessage));
 
-                    respuesta.Estado = false;
-                    respuesta.Mensaje = " validar formulario "+ "'"+messages+"'";
-                    return BadRequest(respuesta);
+                    respuesta.Error = true;
+                    respuesta.Mensaje = "Formulario no valido: " + messages;
+                    return StatusCode(400,respuesta);
                 }
             }
             catch (System.Exception ex)
             {
-                respuesta.Estado = false;
-                respuesta.Mensaje = "!Error en el servidor" + ex.Message;
+                respuesta.Error = true;
+                respuesta.Mensaje = "Error en el servidor" + ex.Message;
                 respuesta.Resultado = "";
-                return BadRequest(respuesta);
+                return StatusCode(500,respuesta);
                 
                 throw;
             }
@@ -99,25 +100,25 @@ namespace SPV.Controllers
                     dbo.Cliente.Remove(cliente);
                     dbo.SaveChanges();
 
-                    respuesta.Estado = true;
+                    respuesta.Error = false;
                     respuesta.Mensaje = "Cliente eliminado con exito!";
                     respuesta.Resultado = "";
-                    return Ok(respuesta);
+                    return StatusCode(204,respuesta);
                 }
                 else
                 {
-                    respuesta.Estado = false;
+                    respuesta.Error = true;
                     respuesta.Mensaje = "Cliente no existe en el sistema";
                     respuesta.Resultado = "";
-                    return BadRequest(respuesta);
+                    return StatusCode(404,respuesta);
                 }
             }
             catch (System.Exception ex)
             {
-                respuesta.Estado = false;
-                respuesta.Mensaje = "!Error en el servidor:" + ex.Message;
+                respuesta.Error = true;
+                respuesta.Mensaje = "Error en el servidor:" + ex.Message;
                 respuesta.Resultado = "";
-                return BadRequest(respuesta);
+                return StatusCode(500,respuesta);
                 
                 throw;
             }

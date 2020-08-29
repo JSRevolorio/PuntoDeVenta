@@ -4,7 +4,7 @@
 <div id="PlaceHolderHere"></div>
 
 <div class="container">
-    <button class="btn btn-outline-primary" data-toggle="ajax-modal" data-target="#EditCliente" data-url="@Url.Action("FormCliente",new{id = 0})"> <i class="fas fa-address-book"></i> Agregar cliente</button>
+    <button class="btn btn-outline-primary" data-toggle="ajax-modal" data-target="#EditCliente" data-url="@Url.Action("GetCliente",new{id = 0})"> <i class="fas fa-address-book"></i> Agregar cliente</button>
 </div>
 <br/>
 <div class="container">
@@ -30,7 +30,7 @@
                     <td>@cliente.NoTelefono</td> 
                     <td>@cliente.CorreoElectronico</td>
                     <td>
-                        <button class="btn btn-success" data-toggle="ajax-modal" data-target="#EditCliente" data-url="@Url.Action("FormCliente",new{id = @cliente.Id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-success" data-toggle="ajax-modal" data-target="#EditCliente" data-url="@Url.Action("GetCliente",new{id = @cliente.Id})"><i class="fas fa-edit"></i></button>
                         <button  class="btn btn-danger" id="ConfirmModal" data-url="@Url.Action("DeleteCliente",new{id = @cliente.Id})"><i class="fas fa-trash-alt"></i></button>
                     </td> 
                 </tr>
