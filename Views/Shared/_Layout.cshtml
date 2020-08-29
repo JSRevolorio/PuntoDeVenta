@@ -5,43 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SPV</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!--Link para manejar tablas -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SPV</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <div class="d-flex" id="content-wrapper">
+        <!-- inicio Sidebar -->
+        <div id="sidebar-container" class="bg-light border-right">
+
+            <div class="logo">
+                <h4 class="font-weight-bold mb-0"> <i class="fas fa-store"></i> Punto de Venta</h4>
+            </div>
+            <div class="menu list-group-flush">
+                    
+                    <!-- Almacen -->
+                    <a href="#subAlmacen" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0 dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class="fas fa-warehouse"></i> Gestion Almacen</a>
+                        <ul class="collapse list-unstyled" id="subAlmacen">
+                            <li>
+                                <a class="dropdown-item text-primary" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                                <a class="dropdown-item text-primary" >Proveedores</a>
+                                <a class="dropdown-item text-primary" >Productos</a>
+                            </li>
+                        </ul>
+
+                    <!-- Ventas -->
+                    <a href="#subVentas" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0 dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class="fas fa-shopping-cart"></i> Gestion Ventas</a>
+                        <ul class="collapse list-unstyled" id="subVentas">
+                            <li>
+                                <a class="dropdown-item text-primary" >Registar Venta</a>
+                                <a class="dropdown-item text-primary" >Anular Factura</a>
+                            </li>
+                        </ul>
+                        
+                     <!-- Campras -->
+                    <a href="#subCompras" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0 dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class="fas fa-shopping-basket"></i> Gestion Compras</a>
+                        <ul class="collapse list-unstyled" id="subCompras">
+                            <li>
+                                <a class="dropdown-item text-primary" >Registar Compra</a>
+                                <a class="dropdown-item text-primary" >Anular Campra</a>
+                            </li>
+                        </ul>
+                    
+                    <!-- Empleados -->
+                    <a href="#subEmpleado" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0 dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class="fas fa-users"></i> Gestion Empleado</a>
+                        <ul class="collapse list-unstyled" id="subEmpleado">
+                            <li>
+                                <a class="dropdown-item text-primary" asp-controller="Empleado" asp-action="Index">Registrar Empleado</a>
+                                <a class="dropdown-item text-primary" asp-controller="Empleado" asp-action="GetEmpleado">Modificar Empleado</a>
+                                <a class="dropdown-item text-primary" >Anular Empleado</a>
+                            </li>
+                        </ul>
+                    
+                    <!-- Configurarion -->
+                    <a href="#subConfiguracion" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0 dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class="fas fa-cog"></i> Configuración</a>
+                        <ul class="collapse list-unstyled" id="subConfiguracion">
+                            <li>
+                                <a class="dropdown-item text-primary">Agregar Usuario</a>
+                                <a class="dropdown-item text-primary">Modificar Contraseña</a>
+                            </li>
+                        </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <!-- Fin sidebar -->
+    
+            <!-- Page Content -->
+            <div id="page-content-wrapper" class="w-100 bg-light-blue">
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="margin: 5px;">
+                        <div class="container">
+                            <button class="btn btn-primary text-primary" id="menu-toggle"><i class="fas fa-bars"></i> Menu </button>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-dark" href="#">Inicio</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Diego</a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="#">Mi perfil</a>
+                                            <a class="dropdown-item" href="#">Suscripciones</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"> <i class="fas fa-power-off"></i> Cerrar sesión</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
+                <div class="container-fluid" id="main">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - SPV - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/b1fe96034b.js" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

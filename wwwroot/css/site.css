@@ -1,71 +1,142 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+/*---------------------------------------*/
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+  --primary: #0b254b;
+  --light: #ffffff;
+  --light-blue: #F5F6FA;
+  --grey: #eff2f7;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  /*overflow: hidden;*/
+  font-family: 'Muli', sans-serif;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.text-muted {
+  color: var(--primary) !important;
+  opacity: .7;
+}
+
+.bg-light {
+  background-color: var(--light) !important;
+}
+
+.bg-light-blue {
+  background-color: var(--light-blue) !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 0 1.25rem rgba(11, 37, 75, .05);
+}
+
+.shadow-hover {
+  transition: 1s ease-in-out;
+}
+
+.shadow-hover:hover {
+  transition: 1s ease-in-out;
+  box-shadow: 0 .5rem 1rem rgba(11, 37, 75, .10)!important;
+}
+
+#sidebar-container {
+  min-height: 100vh;
+  margin-left: -18rem;
+  padding-left: 5px;
+  -webkit-box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-container .logo {
+  padding: 0.875rem 1.25rem;
+  padding-top: 20px
+}
+
+#sidebar-container .menu {
+  width: 18rem;
+}
+
+#content-wrapper.toggled #sidebar-container {
+  margin-left: 0;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+}
+
+.badge {
+  padding: .5rem 1rem;
+}
+
+.bg-primary,
+.badge-primary {
+  background-color: rgba(0, 123, 255, .1) !important;
+}
+
+.btn-primary {
+  background-color: rgba(0, 123, 255, .1) !important;
+  border: 0;
+}
+
+.btn-primary:hover {
+  background-color: rgba(0, 123, 255, .2) !important;
+}
+
+.badge-secondary {
+  background-color: var(--grey);
+  color: var(--primary);
+}
+
+#content {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  #sidebar-container {
+      margin-left: 0;
+  }
+  #content-wrapper.toggled #sidebar-container {
+      margin-left: -18rem;
+  }
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+  font-size: 14px;
+  height: 95%;
+}
+
+@media (min-width: 768px) {
+  html {
+      font-size: 16px;
+      height: 95%;
+  }
+}
+
+.table-encabezado {
+  background-color: #1752ac !important;
+  color: white;
 }

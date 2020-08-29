@@ -41,7 +41,7 @@ namespace SPV.Models
         [Column("estado", TypeName = "int(11)")]
         public int? Estado { get; set; }
 
-        [ForeignKey(nameof(_Categoria))]
+        [ForeignKey(nameof(IdCategoria))]
         [InverseProperty(nameof(Categoria.Producto))]
         public virtual Categoria _Categoria { get; set; }
 

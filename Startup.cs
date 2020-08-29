@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SPV.Service;
 
 namespace SPV
 {
@@ -24,6 +26,15 @@ namespace SPV
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            //Para manejar objetos json con JObjeto 
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            //Configuracion de la base de datos
+            String connString = ConfigurationExtensions.GetConnectionString(this.Configuration, "DefaultConnectionString");
+            services.AddDbContext<SPVContext>( options => options.UseMySql(connString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

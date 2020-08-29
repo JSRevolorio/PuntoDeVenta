@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SPV.Models;
 
-namespace SPV.Models
+namespace SPV.Service
 {
     public partial class SPVContext : DbContext
     {

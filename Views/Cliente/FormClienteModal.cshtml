@@ -1,0 +1,65 @@
+@model Cliente
+
+<div class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                @if (@Model == null)
+                {
+                    <h5 class="modal-title">Agregar Cliente</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Actulizar Cliente</h5>
+                }
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Cliente" asp-action="SetCliente" method="POST" id="formSPV">
+                    <div>
+                        <input type="hidden" asp-for="Id" id="idCliente"> 
+                        <input type="hidden" asp-for="Estado" value="1"> 
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" class="form-control" asp-for="Nombre" id="nombre" placeholder="Nombre">
+                            <span asp-validation-for="Nombre" class="badge badge-warning"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="NoNit">No. Nitt</label>
+                            <input type="text" class="form-control" asp-for="NoNit" id="noNit" placeholder="NoNit">
+                            <span asp-validation-for="NoNit" class="badge badge-warning"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="CorreoElectronico">Correo electronico</label>
+                            <input type="email" class="form-control" asp-for="CorreoElectronico" id="correoElectronico" placeholder="Correo electronico">
+                            <span asp-validation-for="CorreoElectronico" class="badge badge-warning"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="NoTelefono">Numero de telefono</label>
+                            <input type="number" class="form-control" asp-for="NoTelefono" id="noTelefono" placeholder="Telefono">
+                            <span asp-validation-for="NoTelefono" class="badge badge-warning"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Direccion">Direccion</label>
+                            <input type="text" class="form-control" asp-for="Direccion" id="Direccion" placeholder="Direccion">
+                            <span asp-validation-for="Direccion" class="badge badge-warning"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="mensaje-modal" role="alert"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
+               <button type="button" class="btn btn-outline-primary" data-save="modal"><i class="fas fa-save"></i> Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
